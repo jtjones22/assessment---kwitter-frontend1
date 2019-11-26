@@ -3,7 +3,9 @@ import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
 
 class MessageCard extends Component {
+
   render() {
+    
     return (
       <Feed
         style={{
@@ -25,12 +27,16 @@ class MessageCard extends Component {
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
-              <Feed.User>{this.props.displayName}</Feed.User>
-              <Feed.Date>1 Hour Ago</Feed.Date>
+              <Feed.User>{this.props.username}</Feed.User>
+              <Feed.Date>{this.props.createdAt > 1 ? `${this.props.createdAt} hours` : `${this.props.createdAt} hour`} ago</Feed.Date>
               <br></br>
-              <span style={{
-                  fontWeight: 'lighter'
-              }}>{this.props.text}</span>
+              <span
+                style={{
+                  fontWeight: "lighter"
+                }}
+              >
+                {this.props.text}
+              </span>
             </Feed.Summary>
             <Feed.Meta>
               <Feed.Like>

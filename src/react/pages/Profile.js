@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, ProfileCard, MessageFeed } from "../components";
+import { Menu, ProfileCard, UserMessageFeed } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class Profile extends React.Component {
@@ -31,7 +31,7 @@ class Profile extends React.Component {
               width: "80%"
             }}
           >
-            <MessageFeed />
+            <UserMessageFeed />
           </div>
         </div>
       </>
