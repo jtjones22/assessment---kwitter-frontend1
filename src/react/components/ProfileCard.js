@@ -7,7 +7,7 @@ import { withAsyncAction } from "../HOCs"
 class ProfileCard extends Component {
 
   componentDidMount() {
-    this.props.getUser('jtjones22')
+    this.props.getUser(this.props.username)
   }
 
   render() {

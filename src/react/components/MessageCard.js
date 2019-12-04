@@ -2,7 +2,17 @@ import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
 
+
+
 class MessageCard extends Component {
+
+
+  toggleLike = () => {
+    this.setState({
+      like: !this.state.like
+    })
+    this.props.deleteLike(this.props.id)
+  }
 
   render() {
     
@@ -40,7 +50,7 @@ class MessageCard extends Component {
             </Feed.Summary>
             <Feed.Meta>
               <Feed.Like>
-                <Icon name="like" />
+                <Icon name="like"/>
                 {this.props.likes.length}
               </Feed.Like>
             </Feed.Meta>

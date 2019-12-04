@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, ProfileCard, UserMessageFeed } from "../components";
+import { Menu, ProfileCard, MessageList } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class Profile extends React.Component {
@@ -14,7 +14,7 @@ class Profile extends React.Component {
             justifyItems: "center"
           }}
         >
-          <div style={{}}>
+          <div>
             <h2
               style={{
                 display: "flex",
@@ -23,7 +23,7 @@ class Profile extends React.Component {
             >
               Profile
             </h2>
-            <ProfileCard />
+            <ProfileCard username={this.props.match.params.username}/>
           </div>
           <div
             style={{
@@ -31,7 +31,7 @@ class Profile extends React.Component {
               width: "80%"
             }}
           >
-            <UserMessageFeed />
+            <MessageList username={this.props.match.params.username}/>
           </div>
         </div>
       </>

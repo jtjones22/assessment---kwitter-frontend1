@@ -18,6 +18,5 @@ export const CREATEUSER = createActionTypes("CREATEUSER")
 export const UPDATEUSER = createActionTypes("UPDATEUSER")
 
 //messages
-export const GETUSERMESSAGES = createActionTypes("GETUSERMESSAGES")
-export const GETGLOBALMESSAGES = createActionTypes("GETGLOBALMESSAGES")
+export const GETMESSAGES = createActionTypes("GETMESSAGES")
 
