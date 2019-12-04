@@ -21,3 +21,6 @@ export const UPDATEUSER = createActionTypes("UPDATEUSER")
 export const GETUSERMESSAGES = createActionTypes("GETUSERMESSAGES")
 export const GETGLOBALMESSAGES = createActionTypes("GETGLOBALMESSAGES")
 
+//likes
+export const ADDLIKE = createActionTypes("ADDLIKE")
+export const REMOVELIKE = createActionTypes("REMOVELIKE")

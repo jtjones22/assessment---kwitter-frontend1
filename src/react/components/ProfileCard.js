@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction } from "../HOCs"
+import { Spinner } from '../components';
 
 
 class ProfileCard extends Component {
 
   componentDidMount() {
-    this.props.getUser('jtjones22')
+    this.props.getUser('jtjones22');
   }
 
   render() {
     if(this.props.result === null) {
-      return <p>Loading...</p>
+      return <Spinner name="circle" color="blue" />;
     }
 
     const user = this.props.result.user
@@ -60,5 +61,14 @@ class ProfileCard extends Component {
     );
   }
 }
+
+/*mapStateToProps
+  loading
+  error
+  result
+
+mapDispatchToProps
+  getUser
+*/
 
 export default withAsyncAction("users","getUser")(ProfileCard);
