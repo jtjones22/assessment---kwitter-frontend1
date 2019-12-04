@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
+import { withAsyncAction } from '../HOCs';
 
 
 
@@ -15,7 +16,11 @@ toggleLike = () => {
   this.props.addLike(this.state)
   }
 
-
+componentDidUpdate(prevProps) {
+  if (this.props.likes.length !== prevProps.likes.length) {
+    this.toggleLike()
+  }
+}
   
 
   render() {
@@ -65,4 +70,4 @@ toggleLike = () => {
   }
 }
 
-export default MessageCard;
+export default withAsyncAction("likes", "addLike")(MessageCard);
