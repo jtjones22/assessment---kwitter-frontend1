@@ -5,7 +5,7 @@ import { ADDLIKE, REMOVELIKE } from "../actionTypes";
 
 const url = domain + "/likes";
 
-export const addLike => () => dispatch => {
+export const addLike = () => dispatch => {
   dispatch({
     type: ADDLIKE.START
   });
@@ -26,23 +26,27 @@ export const addLike => () => dispatch => {
     });
 };
 
-export const removeLike = username => dispatch => {
+export const removeLike = () => (dispatch, getState) => {
     dispatch({
       type: REMOVELIKE.START
     });
+
+    const token = getState().auth.login.result.token;
   
-    return fetch(url + "/" + likeId, {
-      method: "DELETE",
-      headers: jsonHeaders,
-    })
-      .then(handleJsonResponse)
-      .then(result => {
-        return dispatch({
-          type: REMOVELIKE.SUCCESS,
-          payload: result
-        });
+    return fetch(url + "/logout", {
+        method: "DELETE",
+        headers: { Authorization: "Bearer " + token, ...jsonHeaders }
       })
-      .catch(err => {
-        return Promise.reject(dispatch({ type: REMOVELIKE.FAIL, payload: err }));
-      });
-  };
+        .then(handleJsonResponse)
+        .then(result => {
+          return dispatch({
+            type: REMOVELIKE.SUCCESS,
+            payload: result
+          });
+        })
+        .catch(err => {
+          return Promise.reject(
+            dispatch({ type: REMOVELIKE.FAIL, payload: err.message })
+          );
+        });
+    };
