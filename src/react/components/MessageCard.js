@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
+import { withAsyncAction } from '../HOCs';
+
 
 
 class MessageCard extends Component {
+  state = {
+    messageId: this.props.id
+}
 
 
-  toggleLike = () => {
-    this.setState({
-      like: !this.state.like
-    })
-    this.props.deleteLike(this.props.id)
+toggleLike = () => {
+  this.props.removeLike(this.state)
   }
+
+componentDidUpdate(prevProps) {
+  if (this.props.likes.length !== prevProps.likes.length) {
+    this.toggleLike()
+  }
+}
+  
 
   render() {
     
@@ -48,10 +57,10 @@ class MessageCard extends Component {
               </span>
             </Feed.Summary>
             <Feed.Meta>
-              <Feed.Like>
-                <Icon name="like"/>
-                {this.props.likes.length}
-              </Feed.Like>
+            <Feed.Like>
+                    <Icon onClick= { this.toggleLike}name="like"/>
+                  {this.props.likes.length}
+            </Feed.Like>
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
@@ -60,4 +69,4 @@ class MessageCard extends Component {
   }
 }
 
-export default MessageCard;
+export default withAsyncAction("likes", "removeLike")(MessageCard);
