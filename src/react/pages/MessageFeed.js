@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, GlobalMessageFeed } from "../components";
+import { Menu, MessageList } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class MessageFeed extends React.Component {
@@ -8,7 +8,7 @@ class MessageFeed extends React.Component {
         return (
         <>
         <Menu isAuthenticated={this.props.isAuthenticated} />
-        <GlobalMessageFeed />
+        <MessageList />
         </>
         )
     }

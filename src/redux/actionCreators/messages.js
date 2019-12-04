@@ -1,46 +1,27 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { GETUSERMESSAGES, GETGLOBALMESSAGES } from "../actionTypes";
+import { GETMESSAGES } from "../actionTypes";
 
 const url = domain + "/messages";
 
-export const getUserMessages = username => dispatch => {
+export const getMessages = username => dispatch => {
   dispatch({
-    type: GETUSERMESSAGES.START
+    type: GETMESSAGES.START
   });
 
-  return fetch(`${url}?limit=100&offset=0&username=${username}`, {
+  const endpoint = username ? `${url}?username=${username}` : url
+
+  return fetch(endpoint, {
     method: "GET",
     headers: jsonHeaders,
   })
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
-        type: GETUSERMESSAGES.SUCCESS,
+        type: GETMESSAGES.SUCCESS,
         payload: result,
       });
     })
     .catch(err => {
-      return Promise.reject(dispatch({ type: GETUSERMESSAGES.FAIL, payload: err }));
-    });
-};
-
-export const getGlobalMessages = messageData => dispatch => {
-  dispatch({
-    type: GETGLOBALMESSAGES.START
-  });
-
-  return fetch(url, {
-    method: "GET",
-    headers: jsonHeaders,
-  })
-    .then(handleJsonResponse)
-    .then(result => {
-      return dispatch({
-        type: GETGLOBALMESSAGES.SUCCESS,
-        payload: result,
-      });
-    })
-    .catch(err => {
-      return Promise.reject(dispatch({ type: GETGLOBALMESSAGES.FAIL, payload: err }));
+      return Promise.reject(dispatch({ type: GETMESSAGES.FAIL, payload: err }));
     });
 };

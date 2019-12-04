@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import MessageCard from "./MessageCard";
 import { withAsyncAction } from "../HOCs"
-
-class GlobalMessageFeed extends Component {
+class MessageList extends Component {
 
   componentDidMount() {
-    this.props.getGlobalMessages()
+    this.props.getMessages(this.props.username)
   }
+
   render() {
 
     if(this.props.result === null) {
       return <p>Loading...</p>
     }
 
-    const userMessages = this.props.result.messages
-
-    return userMessages.map(message => (
+    return this.props.result.messages.map(message => (
       <MessageCard
         key={message.id}
         id={message.id}
@@ -28,4 +26,4 @@ class GlobalMessageFeed extends Component {
   }
 }
 
-export default withAsyncAction("messages","getGlobalMessages")(GlobalMessageFeed);
+export default withAsyncAction("messages","getMessages")(MessageList);
