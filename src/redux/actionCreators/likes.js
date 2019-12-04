@@ -3,14 +3,17 @@ import { ADDLIKE, REMOVELIKE } from "../actionTypes";
 
 const url = domain + "/likes";
 
-export const addLike = () => dispatch => {
+export const addLike = messageId => (dispatch, getState) => {
   dispatch({
     type: ADDLIKE.START
   });
 
+  const token = getState().auth.login.result.token;
+
   return fetch(url, {
     method: "POST",
-    headers: jsonHeaders,
+    headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+    body: JSON.stringify(messageId)
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -24,14 +27,14 @@ export const addLike = () => dispatch => {
     });
 };
 
-export const removeLike = () => (dispatch, getState) => {
+export const removeLike = likeId => (dispatch, getState) => {
     dispatch({
       type: REMOVELIKE.START
     });
 
     const token = getState().auth.login.result.token;
   
-    return fetch(url + "/logout", {
+    return fetch(url + "/" + likeId, {
         method: "DELETE",
         headers: { Authorization: "Bearer " + token, ...jsonHeaders }
       })
