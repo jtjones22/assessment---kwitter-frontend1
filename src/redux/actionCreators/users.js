@@ -1,5 +1,6 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { GETUSER, DELETEUSER } from "../actionTypes";
+import { GETUSER, POSTUSER } from "../actionTypes";
+import { login } from "./auth";
 
 const url = domain + "/users";
 
@@ -10,7 +11,7 @@ export const getUser = username => dispatch => {
 
   return fetch(url + "/" + username, {
     method: "GET",
-    headers: jsonHeaders,
+    headers: jsonHeaders
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -24,23 +25,35 @@ export const getUser = username => dispatch => {
     });
 };
 
-export const deleteUser = username => dispatch => {
-    dispatch({
-      type: DELETEUSER.START
-    });
-  
-    return fetch(url + "/" + username, {
-      method: "DELETE",
-      headers: jsonHeaders,
-    })
-      .then(handleJsonResponse)
-      .then(result => {
-        return dispatch({
-          type: DELETEUSER.SUCCESS,
-          payload: result
-        });
-      })
-      .catch(err => {
-        return Promise.reject(dispatch({ type: DELETEUSER.FAIL, payload: err }));
+const _postUser = userData => dispatch => {
+  dispatch({
+    type: POSTUSER.START
+  });
+
+  return fetch(url, {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify(userData)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: POSTUSER.SUCCESS,
+        payload: result
       });
-  };
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: POSTUSER.FAIL, payload: err }));
+    });
+};
+
+export const postUser = userData => dispatch => {
+  return dispatch(_postUser(userData)).then(() =>
+    dispatch(
+      login({
+        username: userData.username,
+        password: userData.password
+      })
+    )
+  );
+};

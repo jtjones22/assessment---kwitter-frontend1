@@ -1,14 +1,14 @@
 import React from "react";
-import { Spinner, Link } from ".";
+import { Spinner } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 
-class LoginForm extends React.Component {
-  state = { username: "", password: "" };
+class RegisterForm extends React.Component {
+  state = { username: "", displayName: "", password: "" };
 
-  handleLogin = e => {
+  handleRegister = e => {
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.postUser(this.state);
   };
 
   handleChange = e => {
@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <React.Fragment>
-        <form id="login-form" onSubmit={this.handleLogin}>
+        <form id="login-form" onSubmit={this.handleRegister}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -27,6 +27,14 @@ class LoginForm extends React.Component {
             autoFocus
             required
             onChange={this.handleChange}
+          />
+          <label htmlFor="displayName">Display Name</label>
+          <input
+          type="text"
+          name="displayName"
+          autoFocus
+          required
+          onChange={this.handleChange}
           />
           <label htmlFor="password">Password</label>
           <input
@@ -36,15 +44,8 @@ class LoginForm extends React.Component {
             onChange={this.handleChange}
           />
           <button type="submit" disabled={loading}>
-            Login
+            Register new account
           </button>
-          <Link to="/register">
-          <button style={{
-            width: '100%'
-          }} disabled={loading}>
-            Create an account
-          </button>
-          </Link>
         </form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
@@ -53,4 +54,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default withAsyncAction("auth", "login")(LoginForm);
+export default withAsyncAction("users", "postUser")(RegisterForm);

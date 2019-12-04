@@ -3,7 +3,6 @@ import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
 
 
-
 class MessageCard extends Component {
 
 
