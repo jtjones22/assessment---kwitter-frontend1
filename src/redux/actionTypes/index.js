@@ -20,3 +20,6 @@ export const UPDATEUSER = createActionTypes("UPDATEUSER")
 //messages
 export const GETMESSAGES = createActionTypes("GETMESSAGES")
 
+//likes
+export const ADDLIKE = createActionTypes("ADDLIKE")
+export const REMOVELIKE = createActionTypes("REMOVELIKE")
