@@ -12,7 +12,7 @@ class MessageCard extends Component {
 
 
 toggleLike = () => {
-  this.props.removeLike(this.state)
+  this.props.addLike(this.state)
   }
 
 componentDidUpdate(prevProps) {
@@ -69,4 +69,4 @@ componentDidUpdate(prevProps) {
   }
 }
 
-export default withAsyncAction("likes", "removeLike")(MessageCard);
+export default withAsyncAction("likes", "addLike")(MessageCard);
