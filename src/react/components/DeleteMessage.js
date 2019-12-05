@@ -3,6 +3,15 @@ import "semantic-ui-css/semantic.min.css";
 import { withAsyncAction, connect } from "../HOCs";
 
 class DeleteMessage extends Component {
+
+    handleDeleteMessage = () => {
+        const confrim = window.confirm()
+
+        if(confrim) {
+            this.props.deleteMessage(this.props.id)
+        }
+    }
+
   render() {
     return (
       this.props.username === this.props.loggedInUser && (
@@ -13,7 +22,7 @@ class DeleteMessage extends Component {
             opacity: "50%"
           }}
           onClick={() => {
-            this.props.deleteMessage(this.props.id);
+              this.handleDeleteMessage()
           }}
         >
           Delete Message
