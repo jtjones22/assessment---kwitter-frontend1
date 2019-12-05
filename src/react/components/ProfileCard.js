@@ -29,7 +29,7 @@ class ProfileCard extends Component {
           <Card.Header> {user.displayName} </Card.Header>
           <Card.Meta>
             <span className="date">
-              Joined in {new Date(user.createdAt).getFullYear()}
+              Joined in {new Date(user.createdAt).toDateString()}
             </span>
           </Card.Meta>
           <Card.Description>
