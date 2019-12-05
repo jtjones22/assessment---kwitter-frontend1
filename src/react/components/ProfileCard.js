@@ -3,7 +3,7 @@ import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction } from "../HOCs"
 import { Spinner } from '../components';
-
+import DeleteUser from './DeleteUser'
 
 class ProfileCard extends Component {
 
@@ -57,6 +57,7 @@ class ProfileCard extends Component {
           <Icon name="user" />
           {user.username}
         </Card.Content>
+        <DeleteUser username={this.props.username}/>
       </Card>
     );
   }

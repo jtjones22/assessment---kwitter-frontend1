@@ -1,29 +1,11 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
-import { Feed, Icon } from "semantic-ui-react";
-import { withAsyncAction } from '../HOCs';
-
-
+import { Feed } from "semantic-ui-react";
+import LikeButton from "./LikeButton";
+import DeleteMessage from "./DeleteMessage";
 
 class MessageCard extends Component {
-  state = {
-    messageId: this.props.id
-}
-
-
-toggleLike = () => {
-  this.props.removeLike(this.state)
-  }
-
-componentDidUpdate(prevProps) {
-  if (this.props.likes.length !== prevProps.likes.length) {
-    this.toggleLike()
-  }
-}
-  
-
   render() {
-    
     return (
       <Feed
         style={{
@@ -46,7 +28,12 @@ componentDidUpdate(prevProps) {
           <Feed.Content>
             <Feed.Summary>
               <Feed.User>{this.props.username}</Feed.User>
-              <Feed.Date>{this.props.createdAt > 1 ? `${this.props.createdAt} hours` : `${this.props.createdAt} hour`} ago</Feed.Date>
+              <Feed.Date>
+                {this.props.createdAt > 1
+                  ? `${this.props.createdAt} hours`
+                  : `${this.props.createdAt} hour`}{" "}
+                ago
+              </Feed.Date>
               <br></br>
               <span
                 style={{
@@ -57,16 +44,14 @@ componentDidUpdate(prevProps) {
               </span>
             </Feed.Summary>
             <Feed.Meta>
-            <Feed.Like>
-                    <Icon onClick= { this.toggleLike}name="like"/>
-                  {this.props.likes.length}
-            </Feed.Like>
+              <LikeButton likes={this.props.likes} id={this.props.id} />
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
+        <DeleteMessage id={this.props.id} username={this.props.username} />
       </Feed>
     );
   }
 }
 
-export default withAsyncAction("likes", "removeLike")(MessageCard);
+export default MessageCard;

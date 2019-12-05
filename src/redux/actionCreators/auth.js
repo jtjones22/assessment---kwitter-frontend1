@@ -44,7 +44,7 @@ export const logout = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      if (err.statusCode === 401) {
+      if (err.statusCode === 401 || err.statusCode === 404) {
         return dispatch({ 
           type: LOGOUT.SUCCESS, 
           payload: { statusCode: 200 } });

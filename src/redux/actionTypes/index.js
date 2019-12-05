@@ -14,9 +14,15 @@ export const LOGOUT = createActionTypes("LOGOUT");
 //users
 export const GETUSER = createActionTypes("GETUSER")
 export const POSTUSER = createActionTypes("POSTUSER")
+export const DELETEUSER = createActionTypes("DELETEUSER")
 
 //messages
-export const GETMESSAGES = createActionTypes("GETMESSAGES")
+export const GETUSERMESSAGES = createActionTypes("GETMESSAGES")
+export const GETGLOBALMESSAGES = createActionTypes("GETMESSAGES")
+export const DELETEMESSAGE = createActionTypes("DELETEMESSAGE")
+export const POSTMESSAGE = createActionTypes("POSTMESSAGE")
+
+
 
 //likes
 export const ADDLIKE = createActionTypes("ADDLIKE")

@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, ProfileCard, MessageList } from "../components";
+import { Menu, ProfileCard, UserMessageList } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class Profile extends React.Component {
@@ -31,7 +31,7 @@ class Profile extends React.Component {
               width: "80%"
             }}
           >
-            <MessageList username={this.props.match.params.username}/>
+            <UserMessageList username={this.props.match.params.username}/>
           </div>
         </div>
       </>
