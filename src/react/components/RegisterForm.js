@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner } from ".";
+import { Spinner, Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 
@@ -46,6 +46,13 @@ class RegisterForm extends React.Component {
           <button type="submit" disabled={loading}>
             Register new account
           </button>
+          <Link to="/">
+          <button style={{
+            width: '100%'
+          }} disabled={loading}>
+            Login Page
+          </button>
+          </Link>
         </form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}

@@ -23,6 +23,11 @@ export const addLike = messageId => (dispatch, getState) => {
       });
     })
     .catch(err => {
+      if (err.statusCode === 400) {
+        return dispatch({ 
+          type: REMOVELIKE.START, 
+          payload: { statusCode: 200 } });
+      }
       return Promise.reject(dispatch({ type: ADDLIKE.FAIL, payload: err }));
     });
 };
