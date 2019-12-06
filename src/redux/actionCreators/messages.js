@@ -1,5 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { GETGLOBALMESSAGES, GETUSERMESSAGES, DELETEMESSAGE } from "../actionTypes";
+import { GETGLOBALMESSAGES, GETUSERMESSAGES, DELETEMESSAGE, POSTMESSAGE } from "../actionTypes";
 
 const url = domain + "/messages";
 
@@ -42,6 +42,35 @@ export const getGlobalMessages = () => dispatch => {
     })
     .catch(err => {
       return Promise.reject(dispatch({ type: GETGLOBALMESSAGES.FAIL, payload: err }));
+    });
+};
+
+export const postMessage = text => (dispatch, getState) => {
+  dispatch({
+    type: POSTMESSAGE.START
+  });
+
+  const token = getState().auth.login.result.token;
+
+  return fetch(url, {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+    body: JSON.stringify(text)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: POSTMESSAGE.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      if (err.statusCode === 400) {
+        return dispatch({ 
+          type: DELETEMESSAGE.START, 
+          payload: { statusCode: 200 } });
+      }
+      return Promise.reject(dispatch({ type: POSTMESSAGE.FAIL, payload: err }));
     });
 };
 
