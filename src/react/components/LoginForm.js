@@ -27,6 +27,7 @@ class LoginForm extends React.Component {
             autoFocus
             required
             onChange={this.handleChange}
+            value={this.state.username}
           />
           <label htmlFor="password">Password</label>
           <input
@@ -34,6 +35,7 @@ class LoginForm extends React.Component {
             name="password"
             required
             onChange={this.handleChange}
+            value={this.state.password}
           />
           <button type="submit" disabled={loading}>
             Login

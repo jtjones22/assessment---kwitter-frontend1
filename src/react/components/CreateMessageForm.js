@@ -10,6 +10,7 @@ class CreateMessageForm extends React.Component {
   handleLogin = e => {
     e.preventDefault();
     this.props.postMessage(this.state);
+    this.setState({ text: ""});
   };
 
   handleChange = e => {
@@ -28,6 +29,7 @@ class CreateMessageForm extends React.Component {
             autoFocus
             required
             onChange={this.handleChange}
+            value={this.state.text}
           />
           <button type="submit" disabled={loading}>
             Post this!

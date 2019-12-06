@@ -45,7 +45,7 @@ export const getGlobalMessages = () => dispatch => {
     });
 };
 
-export const postMessage = postMessageBody => (dispatch, getState) => {
+export const _postMessage = postMessageText => (dispatch, getState) => {
   dispatch({
     type: POSTMESSAGE.START
   });
@@ -55,7 +55,7 @@ export const postMessage = postMessageBody => (dispatch, getState) => {
   return fetch(url, {
     method: "POST",
     headers: { Authorization: "Bearer " + token, ...jsonHeaders },
-    body: JSON.stringify(postMessageBody)
+    body: JSON.stringify(postMessageText)
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -67,6 +67,12 @@ export const postMessage = postMessageBody => (dispatch, getState) => {
     .catch(err => {
       return Promise.reject(dispatch({ type: POSTMESSAGE.FAIL, payload: err }));
     });
+};
+
+export const postMessage = postMessageText => (dispatch, getState) => {
+  return dispatch(_postMessage(postMessageText))
+  .then(() => dispatch(getGlobalMessages())
+  );
 };
 
 export const _deleteMessage = messageId => (dispatch, getState) => {
