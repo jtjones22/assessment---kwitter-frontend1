@@ -45,31 +45,26 @@ export const getGlobalMessages = () => dispatch => {
     });
 };
 
-export const postMessage = text => (dispatch, getState) => {
+export const postMessage = postMessageBody => (dispatch, getState) => {
   dispatch({
     type: POSTMESSAGE.START
   });
 
-  const token = getState().auth.login.result.token;
+  const token = getState().auth.login.result.token
 
   return fetch(url, {
     method: "POST",
     headers: { Authorization: "Bearer " + token, ...jsonHeaders },
-    body: JSON.stringify(text)
+    body: JSON.stringify(postMessageBody)
   })
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
         type: POSTMESSAGE.SUCCESS,
-        payload: result
+        payload: result,
       });
     })
     .catch(err => {
-      if (err.statusCode === 400) {
-        return dispatch({ 
-          type: DELETEMESSAGE.START, 
-          payload: { statusCode: 200 } });
-      }
       return Promise.reject(dispatch({ type: POSTMESSAGE.FAIL, payload: err }));
     });
 };
