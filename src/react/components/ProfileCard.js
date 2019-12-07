@@ -73,7 +73,6 @@ import UpdateUserButton from './UpdateUserButton'
     );
   }
 }
-export default withAsyncAction("users", "getUser")(ProfileCard);
 
 /*mapStateToProps
   loading
@@ -84,7 +83,6 @@ mapDispatchToProps
   getUser
 */
 
-<<<<<<< HEAD
 const mapStateToProps = state => {
   return {
             loggedInUser: state.auth.login.result.username,
@@ -92,8 +90,7 @@ const mapStateToProps = state => {
   }
 }
 
+
 export default connect(mapStateToProps)(
   withAsyncAction("users", "getUser")(ProfileCard)
-)
-=======
->>>>>>> a23a65a81d19a0bfc356d1aa54eda5e1691d919e
+);

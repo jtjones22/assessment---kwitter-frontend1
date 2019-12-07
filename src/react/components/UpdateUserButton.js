@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
-import { withAsyncAction, connect } from "../HOCs";
+import { connect } from "../HOCs";
 import { Link } from ".";
 
 class UpdateUserButton extends Component {

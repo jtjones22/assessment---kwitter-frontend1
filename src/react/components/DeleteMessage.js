@@ -5,7 +5,7 @@ import { withAsyncAction, connect } from "../HOCs";
 class DeleteMessage extends Component {
 
     handleDeleteMessage = () => {
-        const confrim = window.confirm()
+        const confrim = window.confirm("Click OK to delete post")
 
         if(confrim) {
             this.props.deleteMessage(this.props.id)
@@ -18,8 +18,8 @@ class DeleteMessage extends Component {
         <button
           style={{
             background: "red",
-            width: "100%",
-            opacity: "50%"
+            width: "10%",
+            opacity: "80%"
           }}
           onClick={() => {
               this.handleDeleteMessage()

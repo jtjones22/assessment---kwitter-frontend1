@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, UpdateUser, ProfileCard } from "../components";
+import { Menu, UpdateUser } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class Settings extends React.Component {
