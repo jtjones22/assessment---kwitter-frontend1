@@ -3,6 +3,8 @@ import "semantic-ui-css/semantic.min.css";
 import { Feed } from "semantic-ui-react";
 import LikeButton from "./LikeButton";
 import DeleteMessage from "./DeleteMessage";
+import { Link } from ".";
+
 
 class MessageCard extends Component {
   render() {
@@ -27,7 +29,9 @@ class MessageCard extends Component {
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
+              <Link to={`/profile/${this.props.username}`}>
               <Feed.User>{this.props.username}</Feed.User>
+              </Link>
               <Feed.Date>
                 {this.props.createdAt > 1
                   ? `${this.props.createdAt} hours`
