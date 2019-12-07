@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MessageCard from "./MessageCard";
 import { withAsyncAction } from "../HOCs";
+
 class GlobalMessageList extends Component {
   componentDidMount() {
     this.props.getGlobalMessages();

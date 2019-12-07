@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction } from "../HOCs"
@@ -39,7 +39,7 @@ import DeleteUser from './DeleteUser'
           <Card.Header> {user.displayName} </Card.Header>
           <Card.Meta>
             <span className="date">
-              Joined in {new Date(user.createdAt).toDateString()}
+              Joined {new Date(user.createdAt).toDateString()}
             </span>
           </Card.Meta>
           <Card.Description>

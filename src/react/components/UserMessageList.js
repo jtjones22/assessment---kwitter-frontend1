@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MessageCard from "./MessageCard";
 import { withAsyncAction } from "../HOCs";
+
 class UserMessageList extends Component {
   componentDidMount() {
     this.props.getUserMessages(this.props.username);
