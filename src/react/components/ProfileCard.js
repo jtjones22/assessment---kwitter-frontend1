@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction, connect } from "../HOCs"
@@ -7,11 +7,20 @@ import DeleteUser from './DeleteUser'
 import UpdateUserButton from './UpdateUserButton'
 
 
-class ProfileCard extends Component {
 
-  componentDidMount() {
-    this.props.getUser(this.props.username)
-  }
+
+  class ProfileCard extends React.Component {
+    componentDidMount() {
+      this.props.getUser(this.props.username);
+    }
+  
+    componentDidUpdate(prevProps) {
+      // Typical usage (don't forget to compare props):
+      if (this.props.username !== prevProps.username) {
+        this.props.getUser(this.props.username);
+      }
+    }
+  
 
   render() {
     if(this.props.result === null) {
@@ -23,7 +32,8 @@ class ProfileCard extends Component {
     return (
       <Card>
         <Image
-          src={user.pictureLocation}
+          src={user.pictureLocation 
+          ? "https://kwitter-api.herokuapp.com" + user.pictureLocation : "https://icon-library.net/images/no-profile-picture-icon-female/no-profile-picture-icon-female-9.jpg" }
           wrapped
           ui={false}
         />
@@ -31,7 +41,7 @@ class ProfileCard extends Component {
           <Card.Header> {user.displayName} </Card.Header>
           <Card.Meta>
             <span className="date">
-              Joined in {new Date(user.createdAt).getFullYear()}
+              Joined {new Date(user.createdAt).toDateString()}
             </span>
           </Card.Meta>
           <Card.Description>
@@ -63,6 +73,7 @@ class ProfileCard extends Component {
     );
   }
 }
+export default withAsyncAction("users", "getUser")(ProfileCard);
 
 /*mapStateToProps
   loading
@@ -73,6 +84,7 @@ mapDispatchToProps
   getUser
 */
 
+<<<<<<< HEAD
 const mapStateToProps = state => {
   return {
             loggedInUser: state.auth.login.result.username,
@@ -83,3 +95,5 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(
   withAsyncAction("users", "getUser")(ProfileCard)
 )
+=======
+>>>>>>> a23a65a81d19a0bfc356d1aa54eda5e1691d919e

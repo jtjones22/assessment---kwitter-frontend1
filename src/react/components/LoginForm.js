@@ -1,7 +1,8 @@
 import React from "react";
-import { Spinner, Link } from ".";
+//import { Spinner, Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
+import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
 
 class LoginForm extends React.Component {
   state = { username: "", password: "" };
@@ -16,41 +17,48 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const { loading, error } = this.props;
+    
     return (
-      <React.Fragment>
-        <form id="login-form" onSubmit={this.handleLogin}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            autoFocus
-            required
-            onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            required
-            onChange={this.handleChange}
-          />
-          <button type="submit" disabled={loading}>
-            Login
-          </button>
-          <Link to="/register">
-          <button style={{
-            width: '100%'
-          }} disabled={loading}>
-            Create an account
-          </button>
-          </Link>
-        </form>
-        {loading && <Spinner name="circle" color="blue" />}
-        {error && <p style={{ color: "red" }}>{error.message}</p>}
-      </React.Fragment>
+            <Segment placeholder>
+            <Grid columns={2} relaxed='very' stackable>
+              <Grid.Column>
+                <Form id="login-form" onSubmit={this.handleLogin}>
+                  <Form.Input
+                    icon='user'
+                    iconPosition='left'
+                    type="text"
+                    name="username"
+                    autoFocus
+                    required
+                    onChange={this.handleChange}
+                    value={this.state.username}
+                  />
+                  <Form.Input
+                    icon='lock'
+                    iconPosition='left'
+                    type="password"
+                    name="password"
+                    required
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+            
+                  <Button content='Login' primary />
+                </Form>
+              </Grid.Column>
+            
+              <Grid.Column horizontalAlign='middle'>
+                <Button content='Register' icon='signup' size='big' />
+              </Grid.Column>
+            </Grid>
+            
+            <Divider vertical>Or</Divider>
+            </Segment>
+            
+      
     );
   }
 }
+
 
 export default withAsyncAction("auth", "login")(LoginForm);
