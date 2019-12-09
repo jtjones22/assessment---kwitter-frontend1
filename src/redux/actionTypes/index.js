@@ -30,5 +30,5 @@ export const POSTMESSAGE = createActionTypes("POSTMESSAGE")
 
 
 //likes
-export const ADDLIKE = createActionTypes("ADDLIKE")
-export const REMOVELIKE = createActionTypes("REMOVELIKE")
+export const POSTLIKE = createActionTypes("POSTLIKE")
+export const DELETELIKE = createActionTypes("DELETELIKE")

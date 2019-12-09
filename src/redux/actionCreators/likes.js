@@ -6,7 +6,7 @@ const url = domain + "/likes";
 
 export const _addLike = messageId => (dispatch, getState) => {
   dispatch({
-    type: ADDLIKE.START
+    type: POSTLIKE.START
   });
 
   const token = getState().auth.login.result.token;
@@ -19,7 +19,7 @@ export const _addLike = messageId => (dispatch, getState) => {
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
-        type: ADDLIKE.SUCCESS,
+        type: POSTLIKE.SUCCESS,
         payload: result
       });
     })
@@ -43,7 +43,7 @@ export const addLike = (messageId, username) => (dispatch, getState) => {
 
 export const removeLike = likeId => (dispatch, getState) => {
     dispatch({
-      type: REMOVELIKE.START
+      type: DELETELIKE.START
     });
 
     const token = getState().auth.login.result.token;
@@ -55,13 +55,25 @@ export const removeLike = likeId => (dispatch, getState) => {
         .then(handleJsonResponse)
         .then(result => {
           return dispatch({
-            type: REMOVELIKE.SUCCESS,
+            type: DELETELIKE.SUCCESS,
             payload: result
           });
         })
         .catch(err => {
           return Promise.reject(
-            dispatch({ type: REMOVELIKE.FAIL, payload: err.message })
+            dispatch({ type: DELETELIKE.FAIL, payload: err.message })
           );
         });
+    };
+
+export const deleteLike = likeId => (dispatch, getState) => {
+  return dispatch(_deleteLike(likeId))
+    .then(() => {
+      const username = getState().auth.login.result.username;
+      const pathname = getState().router.login.result.pathname;
+        if (pathname === "/messagefeed") {
+          return dispatch(getGlobalMessages());
+        }
+          return dispatch(getGlobalMessages(username));
+      });
     };

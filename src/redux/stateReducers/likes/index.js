@@ -1,2 +1,2 @@
-export { default as addLike } from "./addLike";
-export { default as removeLike } from "./removeLike";
+export { default as postLike } from "./postLike";
+export { default as deleteLike } from "./deleteLike";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Feed } from "semantic-ui-react";
-import LikeButton from "./LikeButton";
+import LikeButton from "./ToggleLikeButton";
 import DeleteMessage from "./DeleteMessage";
 
 
