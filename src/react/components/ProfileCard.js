@@ -2,7 +2,7 @@ import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction, connect } from "../HOCs"
-import { Spinner } from '../components';
+import { Spinner, Link } from '../components';
 import DeleteUser from './DeleteUser'
 import UpdateUserButton from './UpdateUserButton'
 
@@ -50,15 +50,9 @@ import UpdateUserButton from './UpdateUserButton'
               <React.Fragment>
               <span>You do not have a bio currently</span>
               <br></br>
-              <a
-              href="/"
-                style={{
-                  color: "lightgrey",
-                  fontWeight: "lighter"
-                }}
-                >
+              <Link to={`/settings/${this.props.loggedInUser}`}>
                 click here to update bio
-              </a>
+              </Link>
             </React.Fragment>
             )}
           </Card.Description>

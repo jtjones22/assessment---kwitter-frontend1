@@ -7,7 +7,6 @@ class Home extends React.Component {
     return (
       <>
         <Menu />
-        <h2>Create your new account</h2>
         <RegisterForm />
       </>
     );

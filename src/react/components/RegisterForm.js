@@ -2,6 +2,8 @@ import React from "react";
 import { Spinner, Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
+import "semantic-ui-css/semantic.min.css";
+import { Form } from "semantic-ui-react";
 
 class RegisterForm extends React.Component {
   state = { username: "", displayName: "", password: "" };
@@ -18,45 +20,71 @@ class RegisterForm extends React.Component {
   render() {
     const { loading, error } = this.props;
     return (
-      <React.Fragment>
-        <form id="login-form" onSubmit={this.handleRegister}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
+      <div style={{
+        paddingLeft:'20px'
+      }}>
+        <h2>Create your new account</h2>
+        <Form onSubmit={this.handleRegister}>
+          <Form.Input
+            style={{
+              width: "30%"
+            }}
+            fluid
+            className="form-subcomponent-shorthand-input-first-name"
+            label="Username"
+            placeholder="Username"
             name="username"
-            autoFocus
-            required
             onChange={this.handleChange}
           />
-          <label htmlFor="displayName">Display Name</label>
-          <input
-          type="text"
-          name="displayName"
-          autoFocus
-          required
-          onChange={this.handleChange}
+          <Form.Input
+            style={{
+              width: "30%"
+            }}
+            fluid
+            className="form-subcomponent-shorthand-input-first-name"
+            label="Display Name"
+            placeholder="Display Name"
+            name="displayName"
+            onChange={this.handleChange}
           />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
+          <Form.Input
+            style={{
+              width: "30%"
+            }}
+            fluid
+            className="form-subcomponent-shorthand-input-first-name"
+            label="Password"
+            placeholder="Password"
             name="password"
-            required
+            type="password"
             onChange={this.handleChange}
           />
-          <button type="submit" disabled={loading}>
+          <button
+            style={{
+              width: "20%",
+              borderBottom: '2px solid blue'
+            }}
+            type="submit"
+            disabled={loading}
+          >
             Register new account
           </button>
+          <br></br>
           <Link to="/">
-          <button style={{
-            width: '100%'
-          }} disabled={loading}>
-            Login Page
-          </button>
+            <button
+              style={{
+                width: "20%",
+                borderBottom: '2px solid red'
+              }}
+              disabled={loading}
+            >
+              Login Page
+            </button>
           </Link>
-        </form>
+        </Form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
-      </React.Fragment>
+      </div>
     );
   }
 }
