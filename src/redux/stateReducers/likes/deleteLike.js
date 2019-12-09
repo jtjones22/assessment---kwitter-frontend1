@@ -1,4 +1,4 @@
-import { REMOVELIKE } from "../../actionTypes";
+import { DELETELIKE } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -7,11 +7,11 @@ const initialState = {
   error: null
 };
 
-const removeLike = (state = initialState, action) => {
+const deleteLike = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default withAsyncReducer(REMOVELIKE, removeLike);
+export default withAsyncReducer(DELETELIKE, deleteLike);

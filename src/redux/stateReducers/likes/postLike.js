@@ -1,4 +1,4 @@
-import { ADDLIKE } from "../../actionTypes";
+import { POSTLIKE } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -7,11 +7,11 @@ const initialState = {
   error: null
 };
 
-const addLike = (state = initialState, action) => {
+const postLike = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default withAsyncReducer(ADDLIKE, addLike);
+export default withAsyncReducer(POSTLIKE, postLike);

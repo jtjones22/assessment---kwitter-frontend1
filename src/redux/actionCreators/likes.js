@@ -1,11 +1,26 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { ADDLIKE, REMOVELIKE } from "../actionTypes";
+import { POSTLIKE, DELETELIKE } from "../actionTypes";
+import { getGlobalMessages } from ".";
 
 const url = domain + "/likes";
 
-export const addLike = messageId => (dispatch, getState) => {
+export const toggleLike = messageId => (dispatch, getState) => {
+  const username = getState().auth.login.result.username;
+  const messages = getState().messages.getGlobalMessages.result.messages;
+  const message = messages.find(message => {
+    return message.id === messageId
+  })
+  const like = message.likes.find(like => {
+    return like.username === username})
+  if (like) {
+    return dispatch(deleteLike(like.id));
+  }
+    return dispatch(postLike(messageId))
+};
+
+const _postLike = messageId => (dispatch, getState) => {
   dispatch({
-    type: ADDLIKE.START
+    type: POSTLIKE.START
   });
 
   const token = getState().auth.login.result.token;
@@ -18,23 +33,35 @@ export const addLike = messageId => (dispatch, getState) => {
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
-        type: ADDLIKE.SUCCESS,
+        type: POSTLIKE.SUCCESS,
         payload: result
       });
     })
     .catch(err => {
       if (err.statusCode === 400) {
         return dispatch({ 
-          type: REMOVELIKE.START, 
+          type: DELETELIKE.START, 
           payload: { statusCode: 200 } });
       }
-      return Promise.reject(dispatch({ type: ADDLIKE.FAIL, payload: err }));
+      return Promise.reject(dispatch({ type: POSTLIKE.FAIL, payload: err }));
     });
 };
 
-export const removeLike = likeId => (dispatch, getState) => {
+export const postLike = messageId => (dispatch, getState) => {
+  return dispatch(_postLike(messageId))
+  .then(() => {
+    const username = getState().auth.login.result.username;
+    const pathname = getState().router.login.result.pathname;
+    if (pathname === "/messagefeed") {
+      return dispatch(getGlobalMessages());
+    }    
+    return dispatch(getGlobalMessages(username));
+  });
+};
+
+const _deleteLike = likeId => (dispatch, getState) => {
     dispatch({
-      type: REMOVELIKE.START
+      type: DELETELIKE.START
     });
 
     const token = getState().auth.login.result.token;
@@ -46,13 +73,25 @@ export const removeLike = likeId => (dispatch, getState) => {
         .then(handleJsonResponse)
         .then(result => {
           return dispatch({
-            type: REMOVELIKE.SUCCESS,
+            type: DELETELIKE.SUCCESS,
             payload: result
           });
         })
         .catch(err => {
           return Promise.reject(
-            dispatch({ type: REMOVELIKE.FAIL, payload: err.message })
+            dispatch({ type: DELETELIKE.FAIL, payload: err.message })
           );
         });
+    };
+
+export const deleteLike = likeId => (dispatch, getState) => {
+  return dispatch(_deleteLike(likeId))
+    .then(() => {
+      const username = getState().auth.login.result.username;
+      const pathname = getState().router.login.result.pathname;
+        if (pathname === "/messagefeed") {
+          return dispatch(getGlobalMessages());
+        }
+          return dispatch(getGlobalMessages(username));
+      });
     };

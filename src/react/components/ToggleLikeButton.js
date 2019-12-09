@@ -3,13 +3,9 @@ import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
 import { withAsyncAction } from "../HOCs";
 
-class LikeButton extends Component {
-  state = {
-    messageId: this.props.id,
-  };
-  
-  toggleLike = () => {
-    // const user = this.props.result
+class ToggleLikeButton extends Component {
+  handleToggleLike = event => 
+  this.props.
 
 
     // const likes = this.props.likes.map(user => (
@@ -35,4 +31,4 @@ class LikeButton extends Component {
   }
 }
 
-export default withAsyncAction("likes", "addLike")(LikeButton);
+export default withAsyncAction("likes", "postLike")(ToggleLikeButton);

@@ -3,6 +3,7 @@ import React from "react";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import { Link } from ".";
 
 class LoginForm extends React.Component {
   state = { username: "", password: "" };
@@ -49,6 +50,7 @@ class LoginForm extends React.Component {
             
               <Grid.Column horizontalAlign='middle'>
                 <Button content='Register' icon='signup' size='big' />
+                <Link to="/register"></Link>
               </Grid.Column>
             </Grid>
             
