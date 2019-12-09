@@ -17,8 +17,8 @@ export const POSTUSER = createActionTypes("POSTUSER")
 export const DELETEUSER = createActionTypes("DELETEUSER")
 
 //messages
-export const GETUSERMESSAGES = createActionTypes("GETMESSAGES")
-export const GETGLOBALMESSAGES = createActionTypes("GETMESSAGES")
+export const GETUSERMESSAGES = createActionTypes("GETUSERMESSAGES")
+export const GETGLOBALMESSAGES = createActionTypes("GETGLOBALMESSAGES")
 export const DELETEMESSAGE = createActionTypes("DELETEMESSAGE")
 export const POSTMESSAGE = createActionTypes("POSTMESSAGE")
 

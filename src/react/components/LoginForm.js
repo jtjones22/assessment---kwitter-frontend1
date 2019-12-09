@@ -1,5 +1,5 @@
 import React from "react";
-//import { Spinner, Link } from ".";
+import { Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
@@ -49,8 +49,13 @@ class LoginForm extends React.Component {
               </Grid.Column>
             
               <Grid.Column horizontalAlign='middle'>
+                <h3 style={{
+                  display: "flex",
+                  justifyContent: "center"
+                }}>Don't have an account?</h3>
+                <Link to="/register">
                 <Button content='Register' icon='signup' size='big' />
-                <Link to="/register"></Link>
+                </Link>
               </Grid.Column>
             </Grid>
             

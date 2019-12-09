@@ -1,9 +1,11 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
-import { withAsyncAction } from "../HOCs"
+import { withAsyncAction, connect } from "../HOCs"
 import { Spinner } from '../components';
 import DeleteUser from './DeleteUser'
+import UpdateUserButton from './UpdateUserButton'
+
 
 
 
@@ -43,11 +45,9 @@ import DeleteUser from './DeleteUser'
             </span>
           </Card.Meta>
           <Card.Description>
-            {user.about ? (
-              user.about
-            ) :  (
+            {user.about || this.props.username === this.props.loggedInUser && 
+      this.props.page === `/profile/${this.props.loggedInUser}` &&(
               <React.Fragment>
-
               <span>You do not have a bio currently</span>
               <br></br>
               <a
@@ -67,12 +67,12 @@ import DeleteUser from './DeleteUser'
           <Icon name="user" />
           {user.username}
         </Card.Content>
+        <UpdateUserButton username={this.props.username}/>
         <DeleteUser username={this.props.username}/>
       </Card>
     );
   }
 }
-export default withAsyncAction("users", "getUser")(ProfileCard);
 
 /*mapStateToProps
   loading
@@ -83,3 +83,14 @@ mapDispatchToProps
   getUser
 */
 
+const mapStateToProps = state => {
+  return {
+            loggedInUser: state.auth.login.result.username,
+        page: state.router.location.pathname
+  }
+}
+
+
+export default connect(mapStateToProps)(
+  withAsyncAction("users", "getUser")(ProfileCard)
+);

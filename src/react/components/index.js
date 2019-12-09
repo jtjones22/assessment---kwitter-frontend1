@@ -5,6 +5,7 @@ export { default as ProfileCard } from "./ProfileCard"
 export { default as UserMessageList } from "./UserMessageList"
 export { default as GlobalMessageList } from "./GlobalMessageList"
 export { default as RegisterForm } from "./RegisterForm";
+export { default as UpdateUser } from "./UpdateUser";
 export { default as CreateMessageForm } from './CreateMessageForm';
 
 

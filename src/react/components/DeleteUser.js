@@ -5,7 +5,7 @@ import { withAsyncAction, connect } from "../HOCs";
 class DeleteUser extends Component {
 
     handleDeleteUser = () => {
-        const confrim = window.confirm()
+        const confrim = window.confirm("Click OK to remove your account.")
 
         if(confrim) {
             this.props.deleteUser(this.props.id)
@@ -14,7 +14,8 @@ class DeleteUser extends Component {
 
   render() {
     return (
-      this.props.username === this.props.loggedInUser && (
+      this.props.username === this.props.loggedInUser &&
+        this.props.page === `/profile/${this.props.loggedInUser}` && (
         <button
           style={{
             background: "red"
@@ -32,7 +33,8 @@ class DeleteUser extends Component {
 
 const mapStateToProps = state => {
  return {
-  loggedInUser: state.auth.login.result.username   
+  loggedInUser: state.auth.login.result.username,
+  page: state.router.location.pathname
     }
 };
 

@@ -1,24 +1,10 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { POSTLIKE, DELETELIKE } from "../actionTypes";
-import { getGlobalMessages } from ".";
+import { ADDLIKE, REMOVELIKE } from "../actionTypes";
+import { getGlobalMessages, getUserMessages } from "./messages";
 
 const url = domain + "/likes";
 
-export const toggleLike = messageId => (dispatch, getState) => {
-  const username = getState().auth.login.result.username;
-  const messages = getState().messages.getGlobalMessages.result.messages;
-  const message = messages.find(message => {
-    return message.id === messageId
-  })
-  const like = message.likes.find(like => {
-    return like.username === username})
-  if (like) {
-    return dispatch(deleteLike(like.id));
-  }
-    return dispatch(postLike(messageId))
-};
-
-const _postLike = messageId => (dispatch, getState) => {
+export const _addLike = messageId => (dispatch, getState) => {
   dispatch({
     type: POSTLIKE.START
   });
@@ -38,28 +24,24 @@ const _postLike = messageId => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      if (err.statusCode === 400) {
-        return dispatch({ 
-          type: DELETELIKE.START, 
-          payload: { statusCode: 200 } });
-      }
-      return Promise.reject(dispatch({ type: POSTLIKE.FAIL, payload: err }));
+      return Promise.reject(dispatch({ type: ADDLIKE.FAIL, payload: err }));
     });
 };
 
-export const postLike = messageId => (dispatch, getState) => {
-  return dispatch(_postLike(messageId))
-  .then(() => {
-    const username = getState().auth.login.result.username;
-    const pathname = getState().router.login.result.pathname;
-    if (pathname === "/messagefeed") {
-      return dispatch(getGlobalMessages());
-    }    
-    return dispatch(getGlobalMessages(username));
+export const addLike = (messageId, username) => (dispatch, getState) => {
+  const username = getState().auth.login.result.username;
+
+  return dispatch(_addLike(messageId)).then(() => {
+    if (getState().router.location.pathname === "/messagefeed") {
+      dispatch(getGlobalMessages());
+    } else {
+      dispatch(getUserMessages(username));
+    }
   });
 };
 
-const _deleteLike = likeId => (dispatch, getState) => {
+
+export const removeLike = likeId => (dispatch, getState) => {
     dispatch({
       type: DELETELIKE.START
     });
