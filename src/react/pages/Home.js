@@ -1,12 +1,12 @@
 import React from "react";
-import { LoginForm, Menu } from "../components";
+import { LoginForm, MenuBar } from "../components";
 import { userIsNotAuthenticated } from "../HOCs";
 
 class Home extends React.Component {
   render() {
     return (
       <>
-        <Menu />
+        <MenuBar />
         <h2>Your favorite microblogging platform</h2>
         <LoginForm />
       </>

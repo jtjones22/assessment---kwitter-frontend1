@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { withAsyncAction, connect } from "../HOCs";
+import { Button } from "semantic-ui-react";
 
 class DeleteUser extends Component {
 
@@ -16,7 +17,7 @@ class DeleteUser extends Component {
     return (
       this.props.username === this.props.loggedInUser &&
         this.props.page === `/profile/${this.props.loggedInUser}` && (
-        <button
+        <Button
           style={{
             background: "red"
           }}
@@ -25,7 +26,7 @@ class DeleteUser extends Component {
           }}
         >
           Delete Account
-        </button>
+        </Button>
       )
     );
   }

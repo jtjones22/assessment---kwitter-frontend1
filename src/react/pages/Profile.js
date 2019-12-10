@@ -1,12 +1,12 @@
 import React from "react";
-import { Menu, ProfileCard, UserMessageList } from "../components";
+import { ProfileCard, UserMessageList, MenuBar } from "../components";
 import { userIsAuthenticated } from "../HOCs";
 
 class Profile extends React.Component {
   render() {
     return (
       <>
-        <Menu username={this.props.match.params.username} isAuthenticated={this.props.isAuthenticated} />
+        <MenuBar username={this.props.match.params.username} isAuthenticated={this.props.isAuthenticated} />
         <div
           style={{
             display: "grid",
