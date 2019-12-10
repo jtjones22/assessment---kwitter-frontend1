@@ -60,10 +60,6 @@ class RegisterForm extends React.Component {
             onChange={this.handleChange}
           />
           <Button
-            style={{
-              width: "20%",
-              borderBottom: '2px solid blue'
-            }}
             type="submit"
             disabled={loading}
           >
@@ -72,13 +68,11 @@ class RegisterForm extends React.Component {
           <br></br>
           <Link to="/">
             <Button
-              style={{
-                width: "20%",
-                borderBottom: '2px solid red'
-              }}
+            type="submit"
+            background color = "blue"
               disabled={loading}
             >
-              Login Page
+              Back to Login Page
             </Button>
           </Link>
         </Form>
