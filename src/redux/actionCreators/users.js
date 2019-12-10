@@ -101,7 +101,7 @@ export const patchUser = (userData) => (dispatch, getState) => {
   return fetch(url + "/" + username, {
     method: "PATCH",
     headers: { Authorization: "Bearer " + token, ...jsonHeaders },
-    body: userData
+    body: JSON.stringify(userData)
   })
     .then(handleJsonResponse)
     .then(result => {

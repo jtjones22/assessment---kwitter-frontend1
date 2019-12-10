@@ -73,7 +73,8 @@ export const deleteLike = likeId => (dispatch, getState) => {
       const pathname = getState().router.login.result.pathname;
         if (pathname === "/messagefeed") {
           return dispatch(getGlobalMessages());
+        } else {
+          return dispatch(getUserMessages(username));
         }
-          return dispatch(getGlobalMessages(username));
       });
     };

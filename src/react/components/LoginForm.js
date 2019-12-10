@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
                 </Form>
               </Grid.Column>
             
-              <Grid.Column horizontalAlign='middle'>
+              <Grid.Column horizontalalign='middle'>
                 <h3 style={{
                   display: "flex",
                   justifyContent: "center"
