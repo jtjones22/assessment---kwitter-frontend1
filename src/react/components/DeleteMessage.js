@@ -19,14 +19,14 @@ class DeleteMessage extends Component {
         <Button
           style={{
             background: "red",
-            width: "100%",
+            width:"100%",
             opacity: "80%"
           }}
           onClick={() => {
               this.handleDeleteMessage()
           }}
         >
-          Delete Message
+          Delete Message?
         </Button>
       )
     );

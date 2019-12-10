@@ -6,14 +6,15 @@
   padding: 0 1em;
   border-radius: 1em;
 }
-
 #menu-links {
   display: flex;
+  align-items: center;
 }
-
 #menu-links a {
-  text-align: center;
-  text-emphasis: bold;
+  padding-right: 0.5em;
   color: darkblue;
+  text-decoration: underline;
+  align-items: center;
+  text-align: center;
   cursor: pointer;
 }
