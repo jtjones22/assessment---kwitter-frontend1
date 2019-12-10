@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { connect } from "../HOCs";
 import { Link } from ".";
+import { Button } from "semantic-ui-react";
 
 class UpdateUserButton extends Component {
   render() {
@@ -9,7 +10,7 @@ class UpdateUserButton extends Component {
       this.props.username === this.props.loggedInUser && 
       this.props.page === `/profile/${this.props.loggedInUser}` && (
         <Link to={`/settings/${this.props.loggedInUser}`}>
-          <button
+          <Button
             style={{
               background: "blue",
               color: "white",
@@ -17,7 +18,7 @@ class UpdateUserButton extends Component {
             }}
           >
             Update Account
-          </button>
+          </Button>
         </Link>
       )
     );

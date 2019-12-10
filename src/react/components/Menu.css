@@ -9,12 +9,11 @@
 
 #menu-links {
   display: flex;
-  padding-left: 1em;
 }
 
 #menu-links a {
-  padding-right: 0.5em;
+  text-align: center;
+  text-emphasis: bold;
   color: darkblue;
-  text-decoration: underline;
   cursor: pointer;
 }

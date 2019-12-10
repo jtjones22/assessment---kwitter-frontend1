@@ -1,6 +1,7 @@
 import React from "react";
 import { Spinner } from ".";
 import { withAsyncAction } from "../HOCs";
+import { Form, FormTextArea, Button } from "semantic-ui-react";
 
 class CreateMessageForm extends React.Component {
   state = { 
@@ -21,9 +22,10 @@ class CreateMessageForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <React.Fragment>
-        <form id="login-form" onSubmit={this.handlePostMessage}>
+        <Form id="login-form" onSubmit={this.handlePostMessage}>
           <label htmlFor="text">Your Message</label>
-          <input
+          <FormTextArea
+            placeholder="What do you want to say?"
             type="text"
             name="text"
             autoFocus
@@ -31,10 +33,10 @@ class CreateMessageForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.text}
           />
-          <button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading}>
             Post this!
-          </button> 
-        </form>
+          </Button> 
+        </Form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
       </React.Fragment>

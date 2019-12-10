@@ -3,7 +3,7 @@ import { Spinner, Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 import "semantic-ui-css/semantic.min.css";
-import { Form } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 
 class RegisterForm extends React.Component {
   state = { username: "", displayName: "", password: "" };
@@ -59,27 +59,21 @@ class RegisterForm extends React.Component {
             type="password"
             onChange={this.handleChange}
           />
-          <button
-            style={{
-              width: "20%",
-              borderBottom: '2px solid blue'
-            }}
+          <Button
             type="submit"
             disabled={loading}
           >
             Register new account
-          </button>
+          </Button>
           <br></br>
           <Link to="/">
-            <button
-              style={{
-                width: "20%",
-                borderBottom: '2px solid red'
-              }}
+            <Button
+            type="submit"
+            background color = "blue"
               disabled={loading}
             >
-              Login Page
-            </button>
+              Back to Login Page
+            </Button>
           </Link>
         </Form>
         {loading && <Spinner name="circle" color="blue" />}
