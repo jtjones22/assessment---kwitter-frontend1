@@ -31,4 +31,4 @@ class ToggleLikeButton extends Component {
   }
 }
 
-export default withAsyncAction("likes", "postLike")(ToggleLikeButton);
+export default withAsyncAction("likes", "addlike")(ToggleLikeButton);
