@@ -1,6 +1,7 @@
 import React from "react";
 import { Spinner } from ".";
 import { withAsyncAction } from "../HOCs"
+import { Button } from "semantic-ui-react";
 
 class UpdateU extends React.Component {
   state = { about: this.props.bio, displayName: this.props.displayName, password: "" };
@@ -37,9 +38,9 @@ class UpdateU extends React.Component {
           />
           <label htmlFor="password">Password*</label>
           <input type="password" name="password" onChange={this.handleChange} />
-          <button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading}>
             Update Account
-          </button>
+          </Button>
         </form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { withAsyncAction, connect } from "../HOCs";
+import { Button } from "semantic-ui-react";
 
 class DeleteMessage extends Component {
 
@@ -15,7 +16,7 @@ class DeleteMessage extends Component {
   render() {
     return (
       this.props.username === this.props.loggedInUser && (
-        <button
+        <Button
           style={{
             background: "red",
             width: "100%",
@@ -26,7 +27,7 @@ class DeleteMessage extends Component {
           }}
         >
           Delete Message
-        </button>
+        </Button>
       )
     );
   }
