@@ -7,7 +7,7 @@ class CreateMessageForm extends React.Component {
     text: ""
   };
 
-  handleLogin = e => {
+  handlePostMessage = e => {
     e.preventDefault();
     this.props.postMessage(this.state);
     this.setState({ text: ""});
@@ -21,7 +21,7 @@ class CreateMessageForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <React.Fragment>
-        <form id="login-form" onSubmit={this.handleLogin}>
+        <form id="login-form" onSubmit={this.handlePostMessage}>
           <label htmlFor="text">Your Message</label>
           <input
             type="text"

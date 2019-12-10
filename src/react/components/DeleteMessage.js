@@ -18,7 +18,7 @@ class DeleteMessage extends Component {
         <button
           style={{
             background: "red",
-            width: "10%",
+            width: "100%",
             opacity: "80%"
           }}
           onClick={() => {

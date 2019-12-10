@@ -15,6 +15,10 @@ export const LOGOUT = createActionTypes("LOGOUT");
 export const GETUSER = createActionTypes("GETUSER")
 export const POSTUSER = createActionTypes("POSTUSER")
 export const DELETEUSER = createActionTypes("DELETEUSER")
+export const PATCHUSER = createActionTypes("PATCHUSER")
+export const PUTPICTURE = createActionTypes("PUTPICTURE")
+
+
 
 //messages
 export const GETUSERMESSAGES = createActionTypes("GETUSERMESSAGES")

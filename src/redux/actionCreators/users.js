@@ -1,5 +1,11 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { GETUSER, POSTUSER, DELETEUSER } from "../actionTypes";
+import {
+  GETUSER,
+  POSTUSER,
+  DELETEUSER,
+  PATCHUSER,
+  PUTPICTURE
+} from "../actionTypes";
 import { login, logout } from "./auth";
 
 const url = domain + "/users";
@@ -65,7 +71,6 @@ export const _deleteUser = username => (dispatch, getState) => {
 
   const token = getState().auth.login.result.token;
 
-
   return fetch(url + "/" + username, {
     method: "DELETE",
     headers: { Authorization: "Bearer " + token, ...jsonHeaders }
@@ -74,7 +79,7 @@ export const _deleteUser = username => (dispatch, getState) => {
     .then(result => {
       return dispatch({
         type: DELETEUSER.SUCCESS,
-        payload: result,
+        payload: result
       });
     })
     .catch(err => {
@@ -83,9 +88,53 @@ export const _deleteUser = username => (dispatch, getState) => {
 };
 
 export const deleteUser = userData => dispatch => {
-  return dispatch(_deleteUser(userData)).then(() =>
-    dispatch(
-      logout()
-    )
-  );
+  return dispatch(_deleteUser(userData)).then(() => dispatch(logout()));
+};
+
+export const patchUser = (userData) => (dispatch, getState) => {
+  dispatch({
+    type: PATCHUSER.START
+  });
+
+  const {username, token} = getState().auth.login.result;
+
+  return fetch(url + "/" + username, {
+    method: "PATCH",
+    headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+    body: userData
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: PATCHUSER.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: PATCHUSER.FAIL, payload: err }));
+    });
+};
+
+export const putPicture = formTag => (dispatch, getState) => {
+  dispatch({
+    type: PUTPICTURE.START
+  });
+
+  const {username, token} = getState().auth.login.result;
+
+  return fetch(`${url}/${username}/picture`, {
+    method: "PUT",
+    headers: { Authorization: "Bearer " + token, Accept: "multipart/form-data"},
+    body: new FormData(formTag)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: PUTPICTURE.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: PUTPICTURE.FAIL, payload: err }));
+    });
 };

@@ -4,18 +4,13 @@ import { Feed, Icon } from "semantic-ui-react";
 import { withAsyncAction } from "../HOCs";
 
 class ToggleLikeButton extends Component {
-  handleToggleLike = event => 
-  this.props.
+  state = {
+    messageId: this.props.id
+  }
 
-
-    // const likes = this.props.likes.map(user => (
-    //   user.username
-    // ))
-    // console.log(likes)
-    // console.log(user)
-    this.props.addLike(this.state)
-
-  };
+  handleToggleLike = () => {
+      this.props.postLike(this.state)
+  }
 
   render() {
 
@@ -23,7 +18,7 @@ class ToggleLikeButton extends Component {
     return (
       <React.Fragment>
         <Feed.Like>
-          <Icon onClick={() => this.toggleLike()} name="like" />
+          <Icon onClick={this.handleToggleLike} name="like" />
         </Feed.Like>
         {this.props.likes.length}
       </React.Fragment>

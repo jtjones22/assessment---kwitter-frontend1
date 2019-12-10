@@ -3,7 +3,6 @@ import { Link } from ".";
 import { withAsyncAction } from "../HOCs";
 import "./LoginForm.css";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
-import { Link } from ".";
 
 class LoginForm extends React.Component {
   state = { username: "", password: "" };

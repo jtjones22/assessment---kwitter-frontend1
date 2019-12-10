@@ -28,6 +28,7 @@ const mapStateToProps = state => {
     return {
         loggedInUser: state.auth.login.result.username,
         page: state.router.location.pathname
+
     }
 }
 
