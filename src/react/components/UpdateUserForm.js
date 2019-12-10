@@ -37,13 +37,18 @@ class UpdateU extends React.Component {
             onChange={this.handleChange}
           />
           <label htmlFor="password">Password*</label>
-          <Form.Input type="password" name="password" onChange={this.handleChange} />
-          <Button type="submit" disabled={loading}>
+          <Form.Input 
+            type="password" 
+            name="password" 
+            onChange={this.handleChange} />
+          <Button 
+            type="submit" 
+            disabled={loading}>
             Update Account
           </Button>
         </Form>
-        {loading && <Spinner name="circle" color="blue" />}
-        {error && <p style={{ color: "red" }}>{error.message}</p>}
+          {loading && <Spinner name="circle" color="blue" />}
+          {error && <p style={{ color: "red" }}>{error.message}</p>}
       </React.Fragment>
     );
   }
