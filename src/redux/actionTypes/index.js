@@ -13,6 +13,8 @@ export const LOGOUT = createActionTypes("LOGOUT");
 
 //users
 export const GETUSER = createActionTypes("GETUSER")
+export const GETUSERS = createActionTypes("GETUSERS")
+
 export const POSTUSER = createActionTypes("POSTUSER")
 export const DELETEUSER = createActionTypes("DELETEUSER")
 export const PATCHUSER = createActionTypes("PATCHUSER")

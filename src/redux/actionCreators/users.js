@@ -4,7 +4,8 @@ import {
   POSTUSER,
   DELETEUSER,
   PATCHUSER,
-  PUTPICTURE
+  PUTPICTURE,
+  GETUSERS
 } from "../actionTypes";
 import { login, logout } from "./auth";
 import { push } from 'connected-react-router'
@@ -156,3 +157,24 @@ export const putPicture = pictureData => (dispatch, getState) => {
     return dispatch(push(`/profile/${username}`))
   })
 }
+
+export const getUsers = () => dispatch => {
+  dispatch({
+    type: GETUSERS.START
+  });
+
+  return fetch(`${url}?limit=100000`, {
+    method: "GET",
+    headers: jsonHeaders
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: GETUSERS.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: GETUSERS.FAIL, payload: err }));
+    });
+};
