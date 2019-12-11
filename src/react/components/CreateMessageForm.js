@@ -23,7 +23,7 @@ class CreateMessageForm extends React.Component {
     return (
       <React.Fragment>
         <Form id="login-form" onSubmit={this.handlePostMessage}>
-          <label htmlFor="text">Your Message</label>
+          <label htmlFor="text">Your Kweet</label>
           <FormTextArea
             placeholder="What do you want to say?"
             type="text"

@@ -23,7 +23,7 @@ class MenuBar extends React.Component {
             <MenuItem 
               as={Link} 
               to="/messagefeed" 
-              name="Message Feed">
+              name="Kweet Feed">
             </MenuItem>
             <MenuItem 
               as={Link} 
