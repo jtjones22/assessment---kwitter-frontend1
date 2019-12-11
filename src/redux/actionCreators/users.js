@@ -7,6 +7,7 @@ import {
   PUTPICTURE
 } from "../actionTypes";
 import { login, logout } from "./auth";
+import { push } from 'connected-react-router'
 
 const url = domain + "/users";
 
@@ -91,12 +92,12 @@ export const deleteUser = userData => dispatch => {
   return dispatch(_deleteUser(userData)).then(() => dispatch(logout()));
 };
 
-export const patchUser = (userData) => (dispatch, getState) => {
+export const _patchUser = userData => (dispatch, getState) => {
   dispatch({
     type: PATCHUSER.START
   });
 
-  const {username, token} = getState().auth.login.result;
+  const { username, token } = getState().auth.login.result;
 
   return fetch(url + "/" + username, {
     method: "PATCH",
@@ -115,16 +116,26 @@ export const patchUser = (userData) => (dispatch, getState) => {
     });
 };
 
+export const patchUser = userData => (dispatch, getState) => {
+  return dispatch(_patchUser(userData)).then(() => {
+    const username = getState().auth.login.result.username
+    return dispatch(push(`/profile/${username}`));
+  });
+};
+
 export const putPicture = formTag => (dispatch, getState) => {
   dispatch({
     type: PUTPICTURE.START
   });
 
-  const {username, token} = getState().auth.login.result;
+  const { username, token } = getState().auth.login.result;
 
   return fetch(`${url}/${username}/picture`, {
     method: "PUT",
-    headers: { Authorization: "Bearer " + token, Accept: "multipart/form-data"},
+    headers: {
+      Authorization: "Bearer " + token,
+      Accept: "multipart/form-data"
+    },
     body: new FormData(formTag)
   })
     .then(handleJsonResponse)

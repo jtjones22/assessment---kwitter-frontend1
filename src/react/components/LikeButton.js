@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Feed, Icon } from "semantic-ui-react";
-import { withAsyncAction } from "../HOCs";
+import { connect } from "../HOCs";
+import { toggleLike } from "../../redux/actionCreators";
 
 class ToggleLikeButton extends Component {
-  state = {
-    messageId: this.props.id
-  }
 
-  handleToggleLike = () => {
-      this.props.postLike(this.state)
-  }
+  handleToggleLike = event => {
+    this.props.toggleLike(this.props.id)
+  };
 
   render() {
-
-
     return (
       <React.Fragment>
         <Feed.Like>
@@ -26,4 +22,8 @@ class ToggleLikeButton extends Component {
   }
 }
 
-export default withAsyncAction("likes", "postLike")(ToggleLikeButton);
+const mapDispatchToProps = {
+  toggleLike
+};
+
+export default connect(null, mapDispatchToProps)(ToggleLikeButton);
