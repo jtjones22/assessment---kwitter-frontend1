@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAsyncAction } from "../HOCs";
 import UserCard from "./UserCard";
 import { Link } from ".";
+import { Search } from "semantic-ui-react";
 
 class UserList extends Component {
     state = {
@@ -37,13 +38,13 @@ class UserList extends Component {
     return (
       <>
         <div>
-          <input
+          <Search
             style={{
               width: "100%"
             }}
             onChange={this.handleSearchUser}
-            placeholder="Enter a username"
-          ></input>
+            placeholder="Enter a profile name..."
+          ></Search>
         </div>
         {this.props.result && this.state.filteredUsers.map(user => (
           <div

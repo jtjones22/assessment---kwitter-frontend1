@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withAsyncAction } from "../HOCs"
+import { Form } from "semantic-ui-react";
 
 
 class UploadUserImage extends Component {
@@ -12,13 +13,15 @@ class UploadUserImage extends Component {
   render() {
     return (
       <React.Fragment>
-        <form onSubmit={this.handleSubmitUserImage}>
-          <input type="file" name="picture" />
+        <Form onSubmit={this.handleSubmitUserImage}>
+          <Form.Input 
+            type="file" 
+            name="picture" />
           <br></br>
-          <input 
-          type="submit" 
-          value="Upload Profile Picture" />
-        </form>
+          <Form.Input 
+            type="submit" 
+            value="Upload Profile Picture" />
+        </Form>
       </React.Fragment>
     );
   }
