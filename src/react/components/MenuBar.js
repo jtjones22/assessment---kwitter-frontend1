@@ -24,21 +24,15 @@ class MenuBar extends React.Component {
         </Link>
         {this.props.isAuthenticated && (
           <Menu id="menu-links">
-            <MenuItem 
-              as={Link} 
-              to="/messagefeed" 
-              name="Kweet Feed">
-            </MenuItem>
-            <MenuItem 
-              as={Link} 
-              to="/" 
-              name="Profile">
-            </MenuItem>
-            <MenuItem 
-              as={Link} 
-              to="/" 
-              onClick={this.handleLogout} name="Logout">
-            </MenuItem>
+            <MenuItem as={Link} to="/" name="Profile"></MenuItem>
+            <MenuItem as={Link} to="/messagefeed" name="Kweet Feed"></MenuItem>
+            <MenuItem as={Link} to="/usersearch" name="User Search"></MenuItem>
+            <MenuItem
+              as={Link}
+              to="/"
+              onClick={this.handleLogout}
+              name="Logout"
+            ></MenuItem>
           </Menu>
         )}
       </div>
