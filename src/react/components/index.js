@@ -7,6 +7,8 @@ export { default as GlobalMessageList } from "./GlobalMessageList"
 export { default as RegisterForm } from "./RegisterForm";
 export { default as UpdateUser } from "./UpdateUser";
 export { default as CreateMessageForm } from './CreateMessageForm';
+export { default as UserList } from './UserList';
+
 
 
 

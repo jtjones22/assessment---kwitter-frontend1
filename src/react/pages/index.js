@@ -4,6 +4,8 @@ import NotFound from "./NotFound";
 import MessageFeed from "./MessageFeed"
 import Registration from "./Registration";
 import Settings from "./Settings";
+import UserSearch from "./UserSearch";
+
 
 
 
@@ -12,6 +14,7 @@ export default {
   Profile: { path: "/profile/:username", component: Profile },
   MessageFeed: { path: "/messagefeed", component: MessageFeed },
   Register: { path: "/register", component: Registration},
+  UserSearch: { path: "/usersearch", component: UserSearch},
   Settings: { path: "/settings/:username", component: Settings},
   NotFound: { path: "*", component: NotFound }
 };

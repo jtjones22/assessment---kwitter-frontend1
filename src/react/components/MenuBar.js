@@ -13,28 +13,31 @@ class MenuBar extends React.Component {
   render() {
     return (
       <div id="menu">
-        <Link to="/">
-        <h1 style={{
-          color: "black"
-        }}>Kwitter</h1>
+        <Link to="/messagefeed">
+          <h1
+            style={{
+              color: "black"
+            }}
+          >
+            Kwitter
+          </h1>
         </Link>
         {this.props.isAuthenticated && (
           <Menu id="menu-links">
-            <MenuItem 
-              as={Link} 
-              to="/messagefeed" 
-              name="Message Feed">
-            </MenuItem>
-            <MenuItem 
-              as={Link} 
-              to="/" 
-              name="Profile">
-            </MenuItem>
-            <MenuItem 
-              as={Link} 
-              to="/" 
-              onClick={this.handleLogout} name="Logout">
-            </MenuItem>
+            <MenuItem as={Link} to="/" name="Profile"></MenuItem>
+            <MenuItem
+              as={Link}
+              to="/messagefeed"
+              name="Message Feed"
+            ></MenuItem>
+            <MenuItem as={Link} to="/usersearch" name="Search Users"></MenuItem>
+            <MenuItem
+              as={Link}
+              to="/"
+              onClick={this.handleLogout}
+              name="Logout"
+            ></MenuItem>
+            
           </Menu>
         )}
       </div>
@@ -42,4 +45,4 @@ class MenuBar extends React.Component {
   }
 }
 
-export default withAsyncAction("auth", "logout")(MenuBar)
+export default withAsyncAction("auth", "logout")(MenuBar);

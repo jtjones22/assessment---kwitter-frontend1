@@ -5,7 +5,9 @@ import { Link } from "../components";
 class Bio extends React.Component {
   render() {
     if (this.props.bio) {
-      return this.props.bio;
+      return <span style={{
+          color: 'black'
+      }}>{this.props.bio}</span>
     } else if (
       this.props.username === this.props.loggedInUser &&
       this.props.page === `/profile/${this.props.loggedInUser}`
@@ -20,7 +22,7 @@ class Bio extends React.Component {
         </React.Fragment>
       );
     } else {
-      return <h5 style={{ color: "grey", fontWeight:'lighter' }}>This user does not have a bio</h5>;
+      return <h5 style={{ color: "darkGrey", fontWeight:'lighter' }}>This user does not have a bio</h5>;
     }
   }
 }
