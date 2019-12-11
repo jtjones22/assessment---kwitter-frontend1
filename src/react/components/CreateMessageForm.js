@@ -34,7 +34,7 @@ class CreateMessageForm extends React.Component {
             value={this.state.text}
           />
           <Button type="submit" disabled={loading}>
-            Post this!
+            Kweet this!
           </Button> 
         </Form>
         {loading && <Spinner name="circle" color="blue" />}

@@ -25,7 +25,7 @@ class DeleteUser extends Component {
             this.handleDeleteUser();
           }}
         >
-          Delete Account
+          Delete My Kwitter
         </Button>
       )
     );
