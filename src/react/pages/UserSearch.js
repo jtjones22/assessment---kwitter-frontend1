@@ -9,14 +9,7 @@ class Profile extends React.Component {
           background: 'lightgrey'
       }}>
         <MenuBar isAuthenticated={this.props.isAuthenticated} />
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "auto auto auto",
-            justifyItems: "center",
-            marginBottom: '10px'
-          }}
-        >
+        <div>
           <UserList />
         </div>
       </div>

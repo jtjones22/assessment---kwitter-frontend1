@@ -5,31 +5,31 @@ import { Link } from ".";
 import { Search } from "semantic-ui-react";
 
 class UserList extends Component {
-    state = {
-        filteredUsers: []
-    }
+  state = {
+    filteredUsers: []
+  };
 
   componentDidMount() {
     this.props.getUsers();
   }
 
   componentDidUpdate(prevProp) {
-      if (prevProp.result !== this.props.result) {
-          this.setState({filteredUsers: this.props.result.users})
-      }
+    if (prevProp.result !== this.props.result) {
+      this.setState({ filteredUsers: this.props.result.users });
+    }
   }
 
   handleSearchUser = event => {
-      const filterValues = event.target.value
-      const newFilteredUsers = this.props.result.users.filter(user => {
-          if(user.username.includes(filterValues)) {
-              return true
-          } else {
-              return false
-          }
-        })
-        this.setState({filteredUsers: newFilteredUsers})
-  }
+    const filterValues = event.target.value;
+    const newFilteredUsers = this.props.result.users.filter(user => {
+      if (user.username.includes(filterValues)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({ filteredUsers: newFilteredUsers });
+  };
 
   render() {
     if (this.props.result === null) {
@@ -37,31 +37,47 @@ class UserList extends Component {
     }
     return (
       <>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
           <Search
             style={{
-              width: "100%"
+              width: "45%",
+              height: "30px"
             }}
             onChange={this.handleSearchUser}
             placeholder="Enter a profile name..."
           ></Search>
         </div>
-        {this.props.result && this.state.filteredUsers.map(user => (
-          <div
-            style={{
-              marginBottom: "15px"
-            }}
-          >
-            <Link to={`/profile/${user.username}`}>
-              <UserCard
-                username={user.username}
-                bio={user.about}
-                profilePicture={user.pictureLocation}
-                displayName={user.displayName}
-              />
-            </Link>
-          </div>
-        ))}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "auto auto auto",
+            justifyItems: "center",
+            marginBottom: "10px"
+          }}
+        >
+          {this.props.result &&
+            this.state.filteredUsers.map(user => (
+              <div
+                style={{
+                  marginBottom: "15px"
+                }}
+              >
+                <Link to={`/profile/${user.username}`}>
+                  <UserCard
+                    username={user.username}
+                    bio={user.about}
+                    profilePicture={user.pictureLocation}
+                    displayName={user.displayName}
+                  />
+                </Link>
+              </div>
+            ))}
+        </div>
       </>
     );
   }
