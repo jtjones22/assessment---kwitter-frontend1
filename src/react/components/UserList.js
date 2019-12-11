@@ -49,7 +49,7 @@ class UserList extends Component {
             }}
             onChange={this.handleSearchUser}
             placeholder="Enter a username"
-          ></input>
+          />
         </div>
         <div
           style={{
