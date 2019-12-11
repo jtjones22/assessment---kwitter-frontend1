@@ -23,7 +23,7 @@ class CreateMessageForm extends React.Component {
     return (
       <React.Fragment>
         <Form id="login-form" onSubmit={this.handlePostMessage}>
-          <label htmlFor="text">Your Message</label>
+          <label htmlFor="text">Your Kweet</label>
           <FormTextArea
             placeholder="What do you want to say?"
             type="text"
@@ -34,7 +34,7 @@ class CreateMessageForm extends React.Component {
             value={this.state.text}
           />
           <Button type="submit" disabled={loading}>
-            Post this!
+            Kweet this!
           </Button> 
         </Form>
         {loading && <Spinner name="circle" color="blue" />}
