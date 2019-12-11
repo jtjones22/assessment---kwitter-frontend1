@@ -4,9 +4,11 @@ import {
   POSTUSER,
   DELETEUSER,
   PATCHUSER,
-  PUTPICTURE
+  PUTPICTURE,
+  GETUSERS
 } from "../actionTypes";
 import { login, logout } from "./auth";
+import { push } from 'connected-react-router'
 
 const url = domain + "/users";
 
@@ -91,17 +93,17 @@ export const deleteUser = userData => dispatch => {
   return dispatch(_deleteUser(userData)).then(() => dispatch(logout()));
 };
 
-export const patchUser = (userData) => (dispatch, getState) => {
+export const _patchUser = userData => (dispatch, getState) => {
   dispatch({
     type: PATCHUSER.START
   });
 
-  const {username, token} = getState().auth.login.result;
+  const { username, token } = getState().auth.login.result;
 
   return fetch(url + "/" + username, {
     method: "PATCH",
     headers: { Authorization: "Bearer " + token, ...jsonHeaders },
-    body: userData
+    body: JSON.stringify(userData)
   })
     .then(handleJsonResponse)
     .then(result => {
@@ -115,16 +117,26 @@ export const patchUser = (userData) => (dispatch, getState) => {
     });
 };
 
-export const putPicture = formTag => (dispatch, getState) => {
+export const patchUser = userData => (dispatch, getState) => {
+  return dispatch(_patchUser(userData)).then(() => {
+    const username = getState().auth.login.result.username
+    return dispatch(push(`/profile/${username}`));
+  });
+};
+
+const _putPicture = formTag => (dispatch, getState) => {
   dispatch({
     type: PUTPICTURE.START
   });
 
-  const {username, token} = getState().auth.login.result;
+  const { username, token } = getState().auth.login.result;
 
   return fetch(`${url}/${username}/picture`, {
     method: "PUT",
-    headers: { Authorization: "Bearer " + token, Accept: "multipart/form-data"},
+    headers: {
+      Authorization: "Bearer " + token,
+      Accept: "multipart/form-data"
+    },
     body: new FormData(formTag)
   })
     .then(handleJsonResponse)
@@ -136,5 +148,33 @@ export const putPicture = formTag => (dispatch, getState) => {
     })
     .catch(err => {
       return Promise.reject(dispatch({ type: PUTPICTURE.FAIL, payload: err }));
+    });
+};
+
+export const putPicture = pictureData => (dispatch, getState) => {
+  return dispatch(_putPicture(pictureData)).then(() => {
+    const username = getState().auth.login.result.username
+    return dispatch(push(`/profile/${username}`))
+  })
+}
+
+export const getUsers = () => dispatch => {
+  dispatch({
+    type: GETUSERS.START
+  });
+
+  return fetch(`${url}?limit=100000`, {
+    method: "GET",
+    headers: jsonHeaders
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: GETUSERS.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: GETUSERS.FAIL, payload: err }));
     });
 };

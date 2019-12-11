@@ -11,7 +11,11 @@
   align-items: center;
 }
 #menu-links a {
+<<<<<<< HEAD
   background-color: lightskyblue;
+=======
+    background-color: lightskyblue;
+>>>>>>> 802430140073d097aeab3e881e5e9cdfcc6f1903
   padding-right: 0.5em;
   color: darkblue;
   text-decoration: underline;
