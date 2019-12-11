@@ -6,7 +6,7 @@ class Profile extends React.Component {
   render() {
     return (
       <>
-        <MenuBar username={this.props.match.params.username} isAuthenticated={this.props.isAuthenticated} />
+        <MenuBar isAuthenticated={this.props.isAuthenticated} />
         <div
           style={{
             display: "grid",

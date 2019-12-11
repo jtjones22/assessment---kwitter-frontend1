@@ -13,10 +13,14 @@ class MenuBar extends React.Component {
   render() {
     return (
       <div id="menu">
-        <Link to="/">
-        <h1 style={{
-          color: "black"
-        }}>Kwitter</h1>
+        <Link to="/messagefeed">
+          <h1
+            style={{
+              color: "black"
+            }}
+          >
+            Kwitter
+          </h1>
         </Link>
         {this.props.isAuthenticated && (
           <Menu id="menu-links">
@@ -42,4 +46,4 @@ class MenuBar extends React.Component {
   }
 }
 
-export default withAsyncAction("auth", "logout")(MenuBar)
+export default withAsyncAction("auth", "logout")(MenuBar);

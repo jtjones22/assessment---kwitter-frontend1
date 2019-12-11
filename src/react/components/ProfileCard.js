@@ -52,16 +52,6 @@ import Bio from './Bio'
             loggedInUser={this.props.loggedInUser}
             page={this.props.page}
             />
-            {/* {user.about || this.props.username === this.props.loggedInUser && 
-      this.props.page === `/profile/${this.props.loggedInUser}` &&(
-              <React.Fragment>
-              <span>You do not have a bio currently</span>
-              <br></br>
-              <Link to={`/settings/${this.props.loggedInUser}`}>
-                click here to update bio
-              </Link>
-            </React.Fragment>
-            )} */}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
