@@ -123,7 +123,7 @@ export const patchUser = userData => (dispatch, getState) => {
   });
 };
 
-export const putPicture = formTag => (dispatch, getState) => {
+const _putPicture = formTag => (dispatch, getState) => {
   dispatch({
     type: PUTPICTURE.START
   });
@@ -149,3 +149,10 @@ export const putPicture = formTag => (dispatch, getState) => {
       return Promise.reject(dispatch({ type: PUTPICTURE.FAIL, payload: err }));
     });
 };
+
+export const putPicture = pictureData => (dispatch, getState) => {
+  return dispatch(_putPicture(pictureData)).then(() => {
+    const username = getState().auth.login.result.username
+    return dispatch(push(`/profile/${username}`))
+  })
+}

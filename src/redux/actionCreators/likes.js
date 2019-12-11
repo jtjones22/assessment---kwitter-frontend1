@@ -65,7 +65,8 @@ const _postLike = messageId => (dispatch, getState) => {
 };
 
 export const postLike = messageId => (dispatch, getState) => {
-  const username = getState().auth.login.result.username;
+  const username = getState().users.getUser.result.user.username;
+
   return dispatch(_postLike(messageId)).then(() => {
     if (getState().router.location.pathname === "/messagefeed") {
       dispatch(getGlobalMessages());
@@ -101,7 +102,7 @@ const _deleteLike = likeId => (dispatch, getState) => {
 };
 
 export const deleteLike = likeId => (dispatch, getState) => {
-  const username = getState().auth.login.result.username;
+  const username = getState().users.getUser.result.user.username;
 
   return dispatch(_deleteLike(likeId)).then(() => {
     if (getState().router.location.pathname === "/messagefeed") {
