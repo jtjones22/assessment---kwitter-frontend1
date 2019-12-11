@@ -6,20 +6,36 @@ const url = domain + "/likes";
 
 export const toggleLike = messageId => (dispatch, getState) => {
   const username = getState().auth.login.result.username;
-  const messages = getState().messages.getGlobalMessages.result.messages;
-  const message = messages.find(message => {
-    return message.id === messageId;
-  });
-
-
-  const like = message.likes.find(like => {
-    return like.username === username;
-  });
-  if (like) {
-    return dispatch(deleteLike(like.id));
+  const pathName = getState().router.location.pathname
+  if (pathName === '/messagefeed') {
+    const messages = getState().messages.getGlobalMessages.result.messages;
+    const message = messages.find(message => {
+      return message.id === messageId;
+    });
+    const like = message.likes.find(like => {
+      return like.username === username;
+    });
+    if (like) {
+      return dispatch(deleteLike(like.id));
+    } else {
+      return dispatch(postLike(messageId));
+    }
   } else {
-    return dispatch(postLike(messageId));
+    const messages = getState().messages.getUserMessages.result.messages
+    const message = messages.find(message => {
+      return message.id === messageId;
+    });
+    const like = message.likes.find(like => {
+      return like.username === username;
+    });
+    if (like) {
+      return dispatch(deleteLike(like.id));
+    } else {
+      return dispatch(postLike(messageId));
+    }
   }
+
+
 };
 
 const _postLike = messageId => (dispatch, getState) => {
@@ -50,7 +66,6 @@ const _postLike = messageId => (dispatch, getState) => {
 
 export const postLike = messageId => (dispatch, getState) => {
   const username = getState().auth.login.result.username;
-  console.log(messageId)
   return dispatch(_postLike(messageId)).then(() => {
     if (getState().router.location.pathname === "/messagefeed") {
       dispatch(getGlobalMessages());
