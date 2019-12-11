@@ -2,7 +2,6 @@ import React from "react";
 import { MenuBar, UpdateUser } from "../components";
 import { userIsAuthenticated, connect } from "../HOCs";
 import { Link } from "../components";
-import pages from "../pages";
 
 class Settings extends React.Component {
   render() {

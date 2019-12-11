@@ -2,9 +2,10 @@ import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { withAsyncAction, connect } from "../HOCs"
-import { Spinner, Link } from '../components';
+import { Spinner } from '../components';
 import DeleteUser from './DeleteUser'
 import UpdateUserButton from './UpdateUserButton'
+import Bio from './Bio'
 
 
 
@@ -45,7 +46,13 @@ import UpdateUserButton from './UpdateUserButton'
             </span>
           </Card.Meta>
           <Card.Description>
-            {user.about || this.props.username === this.props.loggedInUser && 
+            <Bio 
+            bio={user.about}
+            username={this.props.username}
+            loggedInUser={this.props.loggedInUser}
+            page={this.props.page}
+            />
+            {/* {user.about || this.props.username === this.props.loggedInUser && 
       this.props.page === `/profile/${this.props.loggedInUser}` &&(
               <React.Fragment>
               <span>You do not have a bio currently</span>
@@ -54,7 +61,7 @@ import UpdateUserButton from './UpdateUserButton'
                 click here to update bio
               </Link>
             </React.Fragment>
-            )}
+            )} */}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
