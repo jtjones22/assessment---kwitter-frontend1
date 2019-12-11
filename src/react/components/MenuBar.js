@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from ".";
 import "./Menu.css";
 import { withAsyncAction } from "../HOCs";
-import { Menu, MenuItem } from "semantic-ui-react";
+import { Menu, MenuItem, Image } from "semantic-ui-react";
+import kwitterlogo from "../../Logo Images/kwitterlogo.png";
 
 class MenuBar extends React.Component {
   handleLogout = event => {
@@ -13,6 +14,11 @@ class MenuBar extends React.Component {
   render() {
     return (
       <div id="menu">
+        <Image src={kwitterlogo}
+          alt="kwitter logo" 
+          size="small"
+          floated="left"
+        />
         <Link to="/messagefeed">
           <h1
             style={{
