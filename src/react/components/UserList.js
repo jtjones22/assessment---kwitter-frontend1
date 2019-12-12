@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAsyncAction } from "../HOCs";
 import UserCard from "./UserCard";
 import { Link } from ".";
+import { Search } from "semantic-ui-react";
 
 class UserList extends Component {
   state = {
@@ -42,14 +43,14 @@ class UserList extends Component {
             justifyContent: "center"
           }}
         >
-          <input
+          <Search
             style={{
               width: "45%",
               height: "30px"
             }}
             onChange={this.handleSearchUser}
-            placeholder="Enter a username"
-          />
+            placeholder="Enter a profile name..."
+          ></Search>
         </div>
         <div
           style={{
