@@ -34,7 +34,7 @@ import Bio from './Bio'
       <Card>
         <Image
           src={user.pictureLocation 
-          ? "https://kwitter-api.herokuapp.com" + user.pictureLocation : "https://icon-library.net/images/no-profile-picture-icon-female/no-profile-picture-icon-female-9.jpg" }
+          ? "https://kwittergroupapi.herokuapp.com/docs/" + user.pictureLocation : "https://icon-library.net/images/no-profile-picture-icon-female/no-profile-picture-icon-female-9.jpg" }
           wrapped
           ui={false}
         />
