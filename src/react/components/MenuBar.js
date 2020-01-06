@@ -14,20 +14,21 @@ class MenuBar extends React.Component {
   render() {
     return (
       <div id="menu">
-        <Image src={kwitterlogo}
-          alt="kwitter logo" 
-          size="small"
-          floated="left"
-        />
         <Link to="/messagefeed">
-          <h1
-            style={{
-              color: "black"
-            }}
-          >
-            Kwitter
-          </h1>
+          <Image
+            src={kwitterlogo}
+            alt="kwitter logo"
+            size="small"
+            floated="left"
+          />
         </Link>
+        <h1
+          style={{
+            color: "black"
+          }}
+        >
+          Kwitter
+        </h1>
         {this.props.isAuthenticated && (
           <Menu id="menu-links">
             <MenuItem as={Link} to="/" name="Profile"></MenuItem>
